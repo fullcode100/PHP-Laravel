@@ -8,7 +8,17 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    Your Application's Landing Page.
+                    <h2>Тестирование приложения</h2>
+                    <h3>Автризация через Github</h3>
+
+                    <p>
+                        Приложение необходимо развернуть в виртуальном домене
+                        с адресом <code>http://dz4.loc/</code> иначе просто Github откажет в авторизациии
+                    </p>
+                    <h3>Пользователи</h3>
+                    <p>Для удобства тестирования все пользователи имеют пароль <code>123456789</code></p>
+                    <p>Существует всего один пользователь с правами админа. </p>
+                    <p>Email:: <code>mfc2005@ukr.net</code> Pass::<code>123456789</code></p>
                 </div>
             </div>
         </div>
