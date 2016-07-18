@@ -23,7 +23,14 @@
             <td>{{$user->first_name}}</td>
             <td>{{$user->last_name}}</td>
             <td>{{$user->email}}</td>
-            <td><a class="btn btn-default" href="{{action('BookUsersController@edit',$user->id)}}" role="button">Edit {{$user->last_name}}</a></td>
+            <td>
+                @can("adminRole")
+                <a class="btn btn-default" href="{{action('BookUsersController@edit',$user->id)}}" role="button">Edit {{$user->last_name}}</a>
+                @endcan
+                @cannot("adminRole")
+                    Requires admin access
+                @endcannot
+            </td>
         </tr>
         </tbody>
     </table>
@@ -50,8 +57,13 @@
                     <td>{{$book["year"]}}</td>
                     <td>{{$book["title"]}}</td>
                     <td>
+                        @can("adminRole")
                         <a class="btn btn-default"
                            href="{{action('EditorController@revokeBook',$book["id"],$user->id)}}" role="button">Back to library</a>
+                        @endcan
+                        @cannot("adminRole")
+                            <span>Requires admin access</span>
+                        @endcannot
                     </td>
                 </tr>
                 @endforeach

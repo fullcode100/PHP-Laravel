@@ -34,14 +34,19 @@
                             @endif
                         </td>
                         <td>
-                            {{Form::open(['url' =>action('EditorController@setNewUser',$book["id"]), 'method' => 'post'])}}
-                            <select id="bookUsers" name="newUserId">
-                                @foreach($allUsers as $newuser)
-                                <option value="{{$newuser->id}}">{{$newuser->first_name}},{{$newuser->last_name}}</option>
-                                @endforeach
-                            </select>
-                            {{Form::submit("Set new user")}}
-                            {{Form::close()}}
+                            @can("adminRole")
+                                    {{Form::open(['url' =>action('EditorController@setNewUser',$book["id"]), 'method' => 'post'])}}
+                                    <select id="bookUsers" name="newUserId">
+                                        @foreach($allUsers as $newuser)
+                                        <option value="{{$newuser->id}}">{{$newuser->first_name}},{{$newuser->last_name}}</option>
+                                        @endforeach
+                                    </select>
+                                    {{Form::submit("Set new user")}}
+                                    {{Form::close()}}
+                            @endcan
+                            @cannot("adminRole")
+                                <span>Requires Admin access</span>
+                            @endcannot
                         </td>
                     </tr>
                 </tbody>

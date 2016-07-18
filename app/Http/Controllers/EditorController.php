@@ -15,6 +15,10 @@ class EditorController extends Controller
      * @param  int  $bookid
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin', ['except' =>["show","index"]]);
+    }
     public function revokeBook($bookid){
         $book = Book::findOrFail($bookid);
         $bookUser = $book->book_user_id;

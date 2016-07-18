@@ -10,6 +10,11 @@ use App\Http\Requests;
 
 class BooksController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin', ['except' =>["show","index"]]);
+    }
+
     /**
      * Display a listing of the resource.
      *

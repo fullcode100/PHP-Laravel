@@ -10,6 +10,12 @@ use App\Models\Books\Book;
 
 class BookUsersController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin', ['except' =>["show","index"]]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +51,8 @@ class BookUsersController extends Controller
             'first_name'  => 'required|string',
             'last_name'     => 'required|string',
             'email'     => 'required|email',
-            "password"=>bcrypt("123456789")
+            "password"=>bcrypt("123456789"),
+            "role"=>"editor"
         ]);
         User::create($request->all());
         return redirect()->action('BookUsersController@index')->with('dialog', 'User created');

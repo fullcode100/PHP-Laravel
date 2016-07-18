@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define("view-book",function($user,$book){
             return $book->book_user_id == $user->id;
         });
+
+        $gate->define("adminRole",function($user){
+            return $user->type == "admin";
+        });
     }
 }
